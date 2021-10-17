@@ -1,21 +1,59 @@
 // Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
 
 
-let nums = [-2, -1, -5, -1];
-runProgram(nums);
 
+runProgram(`3
+3
+1 2 3
+4
+-1 -1 0 1
+3
+2 -1 2`);
 
 function runProgram(input) {
-    let arr = input; let maxSum = Number.NEGATIVE_INFINITY  ; let curSum = 0;
-    let n = arr.length;
-    for(let i = 0; i<n; i++){
-        console.log(i, curSum, maxSum)
-        curSum = Math.max(arr[i], curSum + arr[i])
-        if(maxSum < curSum){ maxSum = curSum};
-        // if(curSum < 0 ) curSum = 0
+    let ni = input.split("\n");
+    let t = +ni[0];
+    for (let a = 1; a <= t; a++) {
+        let arr = ni[a * 2].trim().split(" ").map(Number);
+        let n = arr.length;
+        console.log(maxSum(arr, n))
     }
-    console.log(maxSum)
 }
+function maxSum(arr, n) {
+    let maxSum = arr[0];
+    let sum = arr[0];
+    for (let i = 1; i < n; i++) {
+        if (arr[i] > sum + arr[i]) {
+            sum = arr[i];
+        } else sum += arr[i];
+        if (maxSum < sum) maxSum = sum;
+    }
+    return maxSum;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function runProgram(input) {
+//     let arr = input; let maxSum = Number.NEGATIVE_INFINITY  ; let curSum = 0;
+//     let n = arr.length;
+//     for(let i = 0; i<n; i++){
+//         console.log(i, curSum, maxSum)
+//         curSum = Math.max(arr[i], curSum + arr[i])
+//         if(maxSum < curSum){ maxSum = curSum};
+//         // if(curSum < 0 ) curSum = 0
+//     }
+//     console.log(maxSum)
+// }
 
 
 

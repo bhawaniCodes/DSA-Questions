@@ -2,29 +2,35 @@
 
 // You are not allowed to use division operator. It is given that product will fit in 32 bit integer.
 
-
 runProgram(`2
-5
-1 2 3 4 5
+9
+1 1 0 1 0 1 1 0 0
 3
-3 2 7`);
+0 1 0`);
 
 function runProgram(input) {
     let ni = input.split("\n");
     let t = +ni[0];
     for (let a = 1; a <= t; a++) {
         let arr = ni[a * 2].trim().split(" ").map(Number);
-        console.log(findProduct(arr).join(' '));
+        console.log(segregate(arr));
     }
 }
-function findProduct(arr) {
-    let n = arr.length; let prod = 1;
-    for (let i = 0; i < n; i++) {
-        prod *= arr[i];
+function segregate(arr) {
+    let n = arr.length; let l = 0; let r = n - 1;
+    while (l < r) {
+        while (arr[l] === 0 && l < r) l++;
+        while (arr[r] === 1 && l < r) r--;
+        if (l < r) {
+            arr = swap(arr, l, r);
+            l++; r--;
+        }
     }
-    const finalArr = [];
-    for (let i = 0; i < n; i++) {
-       finalArr.push(prod/arr[i]) 
-    }
-    return finalArr;
+    return arr
+}
+function swap(arr, l, r) {
+    let temp = arr[l];
+    arr[l] = arr[r];
+    arr[r] = temp;
+    return arr;
 }

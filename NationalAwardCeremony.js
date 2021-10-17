@@ -16,14 +16,54 @@ function runProgram(input) {
     let ni = input.split("\n");
     let t = +ni[0];
     for (let a = 1; a <= t; a++) {
-        let arr = ni[a*2].trim().split(" ").map(Number);
+        let arr = ni[a * 2].trim().split(" ").map(Number);
         let n = arr.length;
-        let g = []; let s = []; let b = [];
-        for (let i = 0; i < n; i++) {
-            if (arr[i] === 0) {g.push(arr[i]) }
-            if (arr[i] === 1) {s.push (arr[i])}
-            if (arr[i] === 2) {b.push(arr[i]) }
-        }
-        console.log([...g, ...s, ...b].join(' '));
+        console.log(arrangeMedal(arr, n).join(' '));
     }
 }
+function arrangeMedal(arr, n) {
+    let l = 0; let m = 0; let h = n - 1;
+    while (m <= h) { 
+        if (arr[m] === 0) {
+            arr = swap(arr, l, m);
+            l++; m++;
+        } else if (arr[m] === 1) m++;
+        else if (arr[m] === 2) {
+            arr = swap(arr, m, h);
+            h--;
+        }
+    }
+    return arr;
+}
+function swap(arr, a, b) {
+    let temp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = temp;
+    return arr;
+}
+
+
+
+
+
+
+
+
+
+
+
+// function runProgram(input) {
+//     let ni = input.split("\n");
+//     let t = +ni[0];
+//     for (let a = 1; a <= t; a++) {
+//         let arr = ni[a*2].trim().split(" ").map(Number);
+//         let n = arr.length;
+//         let g = []; let s = []; let b = [];
+//         for (let i = 0; i < n; i++) {
+//             if (arr[i] === 0) {g.push(arr[i]) }
+//             if (arr[i] === 1) {s.push (arr[i])}
+//             if (arr[i] === 2) {b.push(arr[i]) }
+//         }
+//         console.log([...g, ...s, ...b].join(' '));
+//     }
+// }

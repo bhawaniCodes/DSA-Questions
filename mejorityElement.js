@@ -5,6 +5,8 @@ runProgram(`2
 5
 1 1 2 2 3`);
 
+
+
 function runProgram(input) {
     let ni = input.split("\n");
     let t = +ni[0];
