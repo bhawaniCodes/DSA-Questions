@@ -16,18 +16,55 @@ function runProgram(input) {
     for (let a = 1; a <= t; a++) {
         let arr = ni[a * 2].trim().split(" ").map(Number);
         let n = arr.length;
-        let temp = arr[0]; let str = arr[0] + ' '; let count = 1;
-        for (let i = 1; i < n; i++) {
-            if (temp !== arr[i]) {
-                str += arr[i] + " ";
-                count++;
-                temp = arr[i];
-            }
-        }
-        console.log(count);
-        console.log(str);
+        removeDup(arr, n)
     }
 }
+
+function removeDup (arr, n) {
+    let i=0; let j=1;
+    while (j < n) {
+        if (arr[i] === arr[j]) {
+            j++;
+        } else {
+            arr[i + 1] = arr[j];
+            i++;
+        }
+    } console.log(i + 1)
+    // arr[i + 1] = '\0'; arr = String(arr);
+    // console.log('arr:', arr)
+    // // while(str)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function runProgram(input) {
+//     let ni = input.split("\n");
+//     let t = +ni[0];
+//     for (let a = 1; a <= t; a++) {
+//         let arr = ni[a * 2].trim().split(" ").map(Number);
+//         let n = arr.length;
+//         let temp = arr[0]; let str = arr[0] + ' '; let count = 1;
+//         for (let i = 1; i < n; i++) {
+//             if (temp !== arr[i]) {
+//                 str += arr[i] + " ";
+//                 count++;
+//                 temp = arr[i];
+//             }
+//         }
+//         console.log(count);
+//         console.log(str);
+//     }
+// }
 
 
 

@@ -18,22 +18,35 @@ function runProgram(input) {
     for (let a = 1; a <= t; a++) {
         let arr = ni[a * 2].trim().split(" ").map(Number);
         let n = arr.length;
-        findSignal(arr, n)
+        findSignal(arr, n);
     }
+}
+function findSignal(arr, n) {
+    let stack = [0];
+    let countAr = [1];
+    for (let i = 1; i < n; i++) {
+        while (arr[stack[stack.length - 1]] <= arr[i] && stack.length !== 0) {
+            stack.pop();
+        }
+        if (stack.length === 0) countAr.push(i+1);
+        else countAr.push(i - stack[stack.length-1]);
+        stack.push(i);
+    }
+    console.log(countAr);
 }
 
-function findSignal(arr, n) {
-    let stack = [arr[0]];
-    const hArr = [1]; findSignal(arr, n)
-    for (let i = 1; i < n; i++) {
-        let height = 1;
-        while (stack[stack.length - 1] <= arr[i] && stack.length !== 0) {
-            console.log(stack)
-            stack.pop();
-            height++;
-        }
-        stack.push(arr[i]);
-        hArr.push(height);
-    }
-    console.log(hArr)
-}
+// function findSignal(arr, n) {
+//     let towArr = [1];
+//     for (let i = 1; i < n; i++) {
+//         let f = true;
+//         for (j = i - 1; j >= 0; j--) {
+//             if (arr[j] >= arr[i]) {
+//                 towArr.push(i - j);
+//                 f = false;
+//                 break;
+//             }
+//         }
+//         if (f) towArr.push(i + 1);
+//     }
+//     console.log(towArr.join(' '));
+// }
